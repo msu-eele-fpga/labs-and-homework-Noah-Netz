@@ -4,20 +4,22 @@
 **This is bold**
 *and this is italic*
 
-[Favorite fact]
-Cows have best friends
+> [Favorite fact]
+> Cows have best friends
 
-[!WARNING]
-I don't really know how to use Linux
+> [!WARNING]
+> I don't really know how to use Linux
 
-Some basic Linux commands are:
-'''
+```C++
+// Your First C++ Program
 
-mkdir
-cd
-rm
+#include <iostream>
 
-'''
+int main() {
+    std::cout << "Hello World!";
+    return 0;
+}
+```
 
 
 | Hello  | Hi |
