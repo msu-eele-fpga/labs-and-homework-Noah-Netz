@@ -18,7 +18,7 @@ architecture behavior of timed_counter is
 
     -- Internal signals and constants
     constant COUNTER_LIMIT : natural := count_time / clk_period;  -- Number of clock cycles to count
-    signal counter : natural range 0 to COUNTER_LIMIT := 0;       -- Counter signal
+    signal counter : natural range 0 to COUNTER_LIMIT := 0;
 
 begin
     counter_out <= counter;
@@ -28,7 +28,7 @@ begin
             if enable = true then
                 if counter < COUNTER_LIMIT then
                     counter <= counter + 1;
-                    done <= false;  -- Not done counting yet
+                    done <= false;
                 else
                     counter <= 0;   -- Reset counter after reaching the limit
                     done <= true;   -- Assert done for one clock cycle
@@ -40,4 +40,4 @@ begin
         end if;
     end process;
 
-end architecture behavior;
+end architecture;

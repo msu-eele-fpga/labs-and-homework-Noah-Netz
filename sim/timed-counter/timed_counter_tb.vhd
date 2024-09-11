@@ -121,12 +121,6 @@ begin
             end loop;
         end loop;
 
-        std.env.finish;
-    end process stimuli_and_checker_100ns;
-
-    -- Stimuli and Checker Process for 240 ns Counter
-    stimuli_and_checker_240ns : process is
-    begin
         -- Test case 1: 240ns timer when enabled
         print("Testing 240 ns timer: enabled");
         wait_for_clock_edge(clk_tb);
@@ -158,9 +152,8 @@ begin
                 predict_counter_done(TWOHUNDRED_FORTY_NS, enable_240ns_tb, done_240ns_tb, i);
             end loop;
         end loop;
-
-        std.env.finish;
-    end process stimuli_and_checker_240ns;
+	std.env.finish;
+    end process;
 
 end architecture testbench;
 

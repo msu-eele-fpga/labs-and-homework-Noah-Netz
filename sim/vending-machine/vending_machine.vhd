@@ -12,3 +12,8 @@ port (
 	amount : out natural range 0 to 15
 );
 end entity vending_machine;
+
+architecture vending_machine_arch of vending_machine is
+
+
+end architecture;
