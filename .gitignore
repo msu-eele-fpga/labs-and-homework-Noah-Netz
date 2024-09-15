@@ -104,6 +104,8 @@ quartus/**/simulation/
 vsim.wlf
 *.cr.mti
 work/
+transcript
 
 
-
+# Vim swap files
+*.swp
