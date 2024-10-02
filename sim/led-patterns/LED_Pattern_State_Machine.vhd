@@ -90,7 +90,7 @@ begin
 				led_pattern <= pattern_gen;
 			when S5 =>
 				pattern_sel <= "111";
-				led_pattern <= switches;
+				led_pattern <= "0000" & switches;
 		end case;
 	end process;
 
