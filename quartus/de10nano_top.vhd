@@ -41,7 +41,7 @@ entity de10nano_top is
     --  when pressed (asserted)
     --  and produce a '1' in the rest (non-pushed) state
     ----------------------------------------
-    push_button_n : in    std_logic_vector(1 downto 0);
+    push_button_n : in    std_ulogic_vector(1 downto 0);
 
     ----------------------------------------
     --  Slide switch inputs (SW)
@@ -50,14 +50,14 @@ entity de10nano_top is
     --  in the down position
     --  (towards the edge of the board)
     ----------------------------------------
-    sw : in    std_logic_vector(3 downto 0);
+    sw : in    std_ulogic_vector(3 downto 0);
 
     ----------------------------------------
     --  LED outputs
     --  See DE10 Nano User Manual page 26
     --  Setting LED to 1 will turn it on
     ----------------------------------------
-    led : out   std_logic_vector(7 downto 0);
+    led : out   std_ulogic_vector(7 downto 0);
 
     ----------------------------------------
     --  GPIO expansion headers (40-pin)
@@ -80,12 +80,37 @@ end entity de10nano_top;
 
 architecture de10nano_arch of de10nano_top is
 
+	component led_patterns is
+		generic (
+			system_clk_period : time := 20 ns
+		);
+		port (
+			clk 			: in std_ulogic;
+			rst 			: in std_ulogic;
+			push_button 	: in std_ulogic;
+			switches 		: in std_ulogic_vector(3 downto 0);
+			hps_led_control : in boolean;
+			base_period 	: in unsigned(7 downto 0);
+			led_reg 		: in std_ulogic_vector(7 downto 0);
+			led 			: out std_ulogic_vector(7 downto 0)
+		);
+	end component led_patterns;
+
 begin
-
-  -- Connect SW[3:0] to LED[3:0]
-  LED(3 downto 0) <= SW(3 downto 0);
   
-  -- Drive the remaining LEDs to zero
-  LED(7 downto 4) <= (others => '0');
-
+  led_patterns_inst : led_patterns
+		generic map (
+			system_clk_period => 20 ns
+		)
+		port map (
+			clk					=> fpga_clk1_50,
+			rst					=> not push_button_n(1),
+			push_button			=> not push_button_n(0),
+			switches				=> sw,
+			led					=> led,
+			hps_led_control	=> false,
+			base_period			=> "00010000",
+			led_reg				=> "00000000"
+		);
+			
 end architecture de10nano_arch;
