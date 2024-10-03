@@ -6,10 +6,10 @@ In this lab, we utilized the **Signal Tap Logic Analyzer** to monitor internal s
 ## Deliverables
 
 ### Signal Tap Waveform View
-![Signal Tap Waveform View](docs/assets/Signal_Tap_SC.png)
+![Signal Tap Waveform View](assets/Signal_Tap_SC.png)
 
 ### Signal Tap Configuration Pane
-![Signal Tap Configuration Pane](docs/assets/Signal_Tab_Config_Pane.png)
+![Signal Tap Configuration Pane](assets/Signal_Tab_Config_Pane.png)
 
 ## Questions
 
