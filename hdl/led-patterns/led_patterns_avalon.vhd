@@ -36,7 +36,7 @@ begin
 				when "00" 		=> avs_readdata <= (others => HPS_LED_control); -- Extend HPS_LED_control to 32 bits
 				when "01" 		=> avs_readdata <= std_ulogic_vector(SYS_CLKs_sec);
 				when "10"		=> avs_readdata(7 downto 0) <= LED_reg; -- Map LED_reg to the lower 8 bits of avs_readdata
-				when "11"		=> avs_readdata <= std_ulogic_vector(Base_rate & "00000000");
+				when "11"		=> avs_readdata <= std_ulogic_vector(Base_rate & "0000000000000000");
 				when others 	=> avs_readdata <= (others => '0');
 			end case;
 		end if;
