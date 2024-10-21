@@ -373,10 +373,10 @@ begin
       memory_oct_rzqin   => hps_ddr3_rzq,
 
       clk_clk       => fpga_clk1_50,
-      reset_reset_n => push_button_n(1),
+      reset_reset_n => push_button_n(0),
 		
 		-- New Connections
-		led_patterns_push_button        							=> not push_button_n(0),
+		led_patterns_push_button        							=> not push_button_n(1),
       led_patterns_switches           							=> std_logic_vector(sw),
       std_ulogic_vector(led_patterns_led)                => led
 		);

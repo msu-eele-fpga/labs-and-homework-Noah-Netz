@@ -43,7 +43,7 @@ architecture led_patterns_arch of led_patterns is
             base_period  : in  unsigned(7 downto 0);
             button_pulse : in  std_logic;
             switches     : in  std_ulogic_vector(3 downto 0);
-            pattern_gen  : in  std_ulogic_vector(6 downto 0);
+            pattern_gen  : in  std_ulogic_vector(7 downto 0);
             pattern_sel  : out std_ulogic_vector(2 downto 0);
             led_pattern  : out std_ulogic_vector(7 downto 0)
         );
@@ -59,14 +59,14 @@ architecture led_patterns_arch of led_patterns is
             rst         : in  std_ulogic;
             base_period : in  unsigned(7 downto 0);
             pattern_sel : in  std_ulogic_vector(2 downto 0);
-            pattern_gen : out std_ulogic_vector(6 downto 0)
+            pattern_gen : out std_ulogic_vector(7 downto 0)
         );
     end component;
 
     -- Signals for internal connections
     signal button_pulse   : std_ulogic;                           -- Conditioned button pulse signal
     signal pattern_sel    : std_ulogic_vector(2 downto 0);         -- State machine pattern select
-    signal pattern_gen    : std_ulogic_vector(6 downto 0);        -- Generated LED pattern output
+    signal pattern_gen    : std_ulogic_vector(7 downto 0);        -- Generated LED pattern output
     signal led_pattern    : std_ulogic_vector(7 downto 0);        -- Final LED pattern output
 
 begin

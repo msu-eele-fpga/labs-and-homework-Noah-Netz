@@ -11,7 +11,7 @@ entity LED_pattern_gen is
         rst             : in  std_ulogic;
         base_period     : in  unsigned(7 downto 0);
         pattern_sel     : in  std_ulogic_vector(2 downto 0);
-        pattern_gen     : out std_ulogic_vector(6 downto 0)
+        pattern_gen     : out std_ulogic_vector(7 downto 0)
     );
 end entity;
 
@@ -106,6 +106,6 @@ begin
         msb_toggle & std_ulogic_vector(pattern_2) when "010",
         msb_toggle & std_ulogic_vector(pattern_3) when "011",
         msb_toggle & std_ulogic_vector(pattern_4) when "100",
-        "0000000"                                 when others;
+        "00000000"                                 when others;
 
 end architecture;
