@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="soc_system" kind="soc_system" version="1.0" fabric="QSYS">
  <!-- Format version 23.1 993 (Future versions may contain additional information.) -->
- <!-- 2024.10.11.11:47:56 -->
+ <!-- 2024.10.21.13:32:44 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1728668868</value>
+  <value>1729539156</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -152,7 +152,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>java.math.BigInteger</type>
-    <value>4</value>
+    <value>16</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -472,6 +472,12 @@ parameters are a RESULT of the module parameters. -->
     <width>32</width>
     <role>writedata</role>
    </port>
+   <port>
+    <name>avs_address</name>
+    <direction>Input</direction>
+    <width>2</width>
+    <role>address</role>
+   </port>
   </interface>
   <interface name="clock_sink" kind="clock_sink" version="23.1">
    <!-- The connection points exposed by a module instance for the
@@ -512,7 +518,7 @@ parameters are a RESULT of the module parameters. -->
    <type>clock</type>
    <isStart>false</isStart>
    <port>
-    <name>clock_sink</name>
+    <name>clk</name>
     <direction>Input</direction>
     <width>1</width>
     <role>clk</role>
@@ -557,7 +563,7 @@ parameters are a RESULT of the module parameters. -->
    <type>reset</type>
    <isStart>false</isStart>
    <port>
-    <name>reset_sink</name>
+    <name>rst</name>
     <direction>Input</direction>
     <width>1</width>
     <role>reset</role>
@@ -16521,7 +16527,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>avalon_slave_0</slaveName>
     <name>IP_Core_0.avalon_slave_0</name>
     <baseAddress>0</baseAddress>
-    <span>4</span>
+    <span>16</span>
    </memoryBlock>
   </interface>
  </module>
@@ -42351,7 +42357,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>avalon_slave_0</slaveName>
     <name>IP_Core_0.avalon_slave_0</name>
     <baseAddress>0</baseAddress>
-    <span>4</span>
+    <span>16</span>
    </memoryBlock>
   </interface>
  </module>
@@ -43466,7 +43472,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>avalon_slave_0</slaveName>
     <name>IP_Core_0.avalon_slave_0</name>
     <baseAddress>4280287232</baseAddress>
-    <span>4</span>
+    <span>16</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
@@ -44285,7 +44291,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>avalon_slave_0</slaveName>
     <name>IP_Core_0.avalon_slave_0</name>
     <baseAddress>4280287232</baseAddress>
-    <span>4</span>
+    <span>16</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>

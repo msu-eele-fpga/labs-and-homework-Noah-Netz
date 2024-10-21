@@ -266,8 +266,8 @@ architecture de10nano_arch of de10nano_top is
 			clk_clk                         : in    std_logic;
 			reset_reset_n                   : in    std_logic;
 			led_patterns_push_button        : in    std_logic                     := 'X';             -- push_button
-         led_patterns_switches           : in    std_ulogic_vector(3 downto 0)  := (others => 'X'); -- switches
-         led_patterns_led                : out   std_ulogic_vector(7 downto 0)                      -- led
+         led_patterns_switches           : in    std_logic_vector(3 downto 0)  := (others => 'X'); -- switches
+         led_patterns_led                : out   std_logic_vector(7 downto 0)                      -- led
 		);
 	end component soc_system;
 
@@ -373,12 +373,12 @@ begin
       memory_oct_rzqin   => hps_ddr3_rzq,
 
       clk_clk       => fpga_clk1_50,
-      reset_reset_n => not push_button_n(1),
+      reset_reset_n => push_button_n(1),
 		
 		-- New Connections
-		led_patterns_push_button        => not push_button_n(0),
-      led_patterns_switches           => sw,
-      led_patterns_led                => led
+		led_patterns_push_button        							=> not push_button_n(0),
+      led_patterns_switches           							=> std_logic_vector(sw),
+      std_ulogic_vector(led_patterns_led)                => led
 		);
 
 			
