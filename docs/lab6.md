@@ -9,7 +9,7 @@ In this lab, we took our LED-patterns files and created a LED-patterns-avalon fi
 
 Our system architecture integrates the `led_patterns_avalon` component, which contains memory-mapped registers for HPS communication and FPGA logic control. The system block diagram below shows the `led_patterns_avalon` component, the HPS-to-FPGA lightweight bridge, and how the ARM CPUs access the component's registers.
 
-![System Block Diagram](assets/Lab6_Block_Diagram.png)
+![System Block Diagram](assets/Lab6_Block_Diagram)
 
 ---
 
