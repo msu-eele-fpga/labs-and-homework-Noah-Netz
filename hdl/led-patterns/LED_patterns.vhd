@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity led_patterns is
 	generic (
-		system_clock_period : time := 20 ns
+		system_clk_period : time := 20 ns
 	);
 	port (
 		clk 			: in std_ulogic;
@@ -83,7 +83,7 @@ begin
     -- Instantiate LED Pattern State Machine
     led_pattern_state_machine_inst : led_pattern_state_machine
         generic map (
-            system_clk_period => system_clock_period
+            system_clk_period => system_clk_period
         )
         port map (
             clk          => clk,
@@ -99,7 +99,7 @@ begin
     -- Instantiate LED Pattern Generator
     led_pattern_gen_inst : LED_pattern_gen
         generic map (
-            system_clk_period => system_clock_period
+            system_clk_period => system_clk_period
         )
         port map (
             clk         => clk,
