@@ -1,0 +1,6 @@
+file-sizes.txt
+fpgas.txt
+gibberish.txt
+log.csv
+lorem-ipsum.txt
+ls-output.txt
