@@ -26,6 +26,8 @@ architecture led_patterns_avalon_arch of led_patterns_avalon is
 	--signal SYS_CLKs_sec         : std_ulogic_vector(31 downto 0) := "00000000000000000000000000000000";
 	signal LED_reg	               : std_logic_vector(31 downto 0) := "00000000000000000000000000000000";
 	signal base_period            : std_logic_vector(31 downto 0) := "00000000000000000000000000010000";
+	signal HPS_signal					: boolean;
+	
 	
 	component led_patterns is
 	generic (
@@ -43,6 +45,8 @@ architecture led_patterns_avalon_arch of led_patterns_avalon is
 	);
 	end component led_patterns;
 begin
+
+	HPS_signal <= True when HPS_LED_control(0) = '1' else False;
 	-- Read process
 	avalon_register_read : process(clk)
 	begin
@@ -80,7 +84,7 @@ begin
 			rst            => rst,
 			push_button    => push_button,
 			switches       => switches,
-			hps_led_control => False,
+			hps_led_control => HPS_signal,
 			base_period    => unsigned(base_period)(7 downto 0),
 			led_reg        => std_ulogic_vector(LED_reg)(7 downto 0),
 			led            => led
