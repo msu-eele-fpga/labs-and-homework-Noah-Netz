@@ -30,6 +30,14 @@
          type = "boolean";
       }
    }
+   element jtag_mm1
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
    element led_patterns_core_0
    {
       datum _sortIndex
@@ -898,6 +906,20 @@
   <parameter name="use_default_mpu_clk" value="true" />
  </module>
  <module
+   name="jtag_mm1"
+   kind="altera_jtag_avalon_master"
+   version="23.1"
+   enabled="1">
+  <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7L" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
+  <parameter name="COMPONENT_CLOCK" value="0" />
+  <parameter name="FAST_VER" value="0" />
+  <parameter name="FIFO_DEPTHS" value="2" />
+  <parameter name="PLI_PORT" value="50000" />
+  <parameter name="USE_PLI" value="0" />
+ </module>
+ <module
    name="led_patterns_core_0"
    kind="led_patterns_core"
    version="1.0"
@@ -912,6 +934,16 @@
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
+   kind="avalon"
+   version="23.1"
+   start="jtag_mm1.master"
+   end="led_patterns_core_0.avalon_slave_0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection kind="clock" version="23.1" start="fpga_clk.clk" end="jtag_mm1.clk" />
+ <connection
    kind="clock"
    version="23.1"
    start="fpga_clk.clk"
@@ -921,6 +953,11 @@
    version="23.1"
    start="fpga_clk.clk"
    end="hps.h2f_lw_axi_clock" />
+ <connection
+   kind="reset"
+   version="23.1"
+   start="fpga_clk.clk_reset"
+   end="jtag_mm1.clk_reset" />
  <connection
    kind="reset"
    version="23.1"
