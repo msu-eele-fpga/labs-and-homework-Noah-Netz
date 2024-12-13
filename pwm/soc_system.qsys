@@ -9,6 +9,22 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
+   element RGB_LED_core_0
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element RGB_LED_core_0.avalon_slave_0
+   {
+      datum baseAddress
+      {
+         value = "842496";
+         type = "String";
+      }
+   }
    element fpga_clk
    {
       datum _sortIndex
@@ -31,14 +47,6 @@
       }
    }
    element jtag_mm1
-   {
-      datum _sortIndex
-      {
-         value = "3";
-         type = "int";
-      }
-   }
-   element led_patterns_core_0
    {
       datum _sortIndex
       {
@@ -334,10 +342,18 @@
          type = "String";
       }
    }
+   element soc_system
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
- <parameter name="device" value="5CSEBA6U23I7L" />
+ <parameter name="device" value="5CSEBA6U23I7" />
  <parameter name="deviceFamily" value="Cyclone V" />
  <parameter name="deviceSpeedGrade" value="7" />
  <parameter name="fabricMode" value="QSYS" />
@@ -362,13 +378,10 @@
  <interface name="hps_io" internal="hps.hps_io" type="conduit" dir="end" />
  <interface name="hps_spim0" internal="hps.spim0" />
  <interface name="hps_spim0_sclk_out" internal="hps.spim0_sclk_out" />
- <interface
-   name="led_patterns"
-   internal="led_patterns_core_0.export"
-   type="conduit"
-   dir="end" />
  <interface name="memory" internal="hps.memory" type="conduit" dir="end" />
  <interface name="reset" internal="fpga_clk.clk_in_reset" type="reset" dir="end" />
+ <interface name="rgb" internal="RGB_LED_core_0.export" type="conduit" dir="end" />
+ <module name="RGB_LED_core_0" kind="RGB_LED_core" version="1.0" enabled="1" />
  <module name="fpga_clk" kind="clock_source" version="23.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -855,7 +868,7 @@
   <parameter name="desired_sdmmc_clk_mhz" value="200.0" />
   <parameter name="desired_spi_m_clk_mhz" value="200.0" />
   <parameter name="desired_usb_mp_clk_mhz" value="200.0" />
-  <parameter name="device_name" value="5CSEBA6U23I7L" />
+  <parameter name="device_name" value="5CSEBA6U23I7" />
   <parameter name="device_pll_info_manual">{320000000 1600000000} {320000000 1000000000} {800000000 400000000 400000000}</parameter>
   <parameter name="eosc1_clk_mhz" value="25.0" />
   <parameter name="eosc2_clk_mhz" value="25.0" />
@@ -910,7 +923,7 @@
    kind="altera_jtag_avalon_master"
    version="23.1"
    enabled="1">
-  <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7L" />
+  <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
   <parameter name="COMPONENT_CLOCK" value="0" />
@@ -919,27 +932,22 @@
   <parameter name="PLI_PORT" value="50000" />
   <parameter name="USE_PLI" value="0" />
  </module>
- <module
-   name="led_patterns_core_0"
-   kind="led_patterns_core"
-   version="1.0"
-   enabled="1" />
  <connection
    kind="avalon"
    version="23.1"
    start="hps.h2f_lw_axi_master"
-   end="led_patterns_core_0.avalon_slave_0">
+   end="RGB_LED_core_0.avalon_slave_0">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x000cdb00" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
    kind="avalon"
    version="23.1"
    start="jtag_mm1.master"
-   end="led_patterns_core_0.avalon_slave_0">
+   end="RGB_LED_core_0.avalon_slave_0">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x000cdb00" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="23.1" start="fpga_clk.clk" end="jtag_mm1.clk" />
@@ -947,7 +955,7 @@
    kind="clock"
    version="23.1"
    start="fpga_clk.clk"
-   end="led_patterns_core_0.clock_sink" />
+   end="RGB_LED_core_0.clk" />
  <connection
    kind="clock"
    version="23.1"
@@ -962,7 +970,7 @@
    kind="reset"
    version="23.1"
    start="fpga_clk.clk_reset"
-   end="led_patterns_core_0.reset_sink" />
+   end="RGB_LED_core_0.rst" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
 </system>
