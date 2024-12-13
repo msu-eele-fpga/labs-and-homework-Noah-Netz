@@ -379,5 +379,6 @@ begin
 	  );
 
 	gpio_1 <= "000000000000000000000000000000000" & rgb;
+	
 			
 end architecture de10nano_arch;
